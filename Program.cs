@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Головнич Вікторія КН21
+// Тема лабораторної роботи №1 - "Магазин побутової техніки"
+
+using System;
 
 namespace HomeAppliancesStore
 {
