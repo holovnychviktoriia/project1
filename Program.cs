@@ -1,51 +1,58 @@
-﻿// Головнич Вікторія КН-21
+﻿using System;
 
-using System;
-namespace FarmerMarketApp
+namespace HomeAppliancesStore
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double priceApples = 15.50; 
-            double priceMilk = 32.00;   
-            double priceEggs = 65.00;   
-            Console.WriteLine("================================================");
-            Console.WriteLine("   Ласкаво просимо до 'Фермерського магазину'!");
-            Console.WriteLine("================================================");
-            Console.WriteLine("Наші товари:");
-            Console.WriteLine("1. Яблука - " + priceApples + " грн/кг");
-            Console.WriteLine("2. Молоко - " + priceMilk + " грн/пляшка");
-            Console.WriteLine("3. Яйця (10 шт) - " + priceEggs + " грн/уп");
-            Console.WriteLine("------------------------------------------------");
-            Console.Write("Введіть кількість яблук (кг): ");
-            double qtyApples = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Введіть кількість пляшок молока: ");
-            int qtyMilk = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Введіть кількість упаковок яєць: ");
-            int qtyEggs = Convert.ToInt32(Console.ReadLine());
-            double totalApples = qtyApples * priceApples;
-            double totalMilk = qtyMilk * priceMilk;
-            double totalEggs = qtyEggs * priceEggs;
-            double finalTotal = totalApples + totalMilk + totalEggs;
-            double roundedFinalTotal = Math.Round(finalTotal, 2);
-            double testNumber = 9;
-            double sqrtResult = Math.Sqrt(testNumber);
-            double powResult = Math.Pow(2, 3);
-            Console.WriteLine("\n---------------------------------------------");
-            Console.WriteLine("           ВАШЕ ЗАМОВЛЕННЯ");
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Яблука: " + totalApples + " грн");
-            Console.WriteLine("Молоко: " + totalMilk + " грн");
-            Console.WriteLine("Яйця: " + totalEggs + " грн");
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Загальна сума (не округлена): " + finalTotal + " грн");
-            Console.WriteLine("ЗАГАЛЬНА СУМА ДО СПЛАТИ (округлена): " + roundedFinalTotal + " грн");
-            Console.WriteLine("\n--- Демонстрація Math ---");
-            Console.WriteLine("Корінь з " + testNumber + " = " + sqrtResult);
-            Console.WriteLine("2 в 3 степені = " + powResult);
-            Console.WriteLine("\nНатисніть будь-яку клавішу для виходу...");
-            Console.ReadKey();
+            Console.Title = "Магазин побутової техніки";
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("--- Вітаємо у магазині побутової техніки ---");
+            Console.WriteLine("Наявні товари:");
+            Console.WriteLine("1. Телевізор Samsung (15000 грн)");
+            Console.WriteLine("2. Холодильник Bosch (22000 грн)");
+            Console.WriteLine("3. Пральна машина LG (18500 грн)");
+            Console.ResetColor();
+
+            double priceTv = 15000.00;
+            double priceFridge = 22000.00;
+            double priceWasher = 18500.00;
+
+            Console.WriteLine("\nВведіть кількість телевізорів, яку бажаєте придбати:");
+            int countTv = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введіть кількість холодильників:");
+            int countFridge = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введіть кількість пральних машин:");
+            int countWasher = Convert.ToInt32(Console.ReadLine());
+
+            double widthTv = 90; 
+            double heightTv = 50; 
+            double diagonal = Math.Sqrt(Math.Pow(widthTv, 2) + Math.Pow(heightTv, 2));
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\nДовідкова інформація: діагональ обраних телевізорів становить " + Math.Round(diagonal, 1) + " см");
+            Console.ResetColor();
+
+            double totalSum = (priceTv * countTv) + (priceFridge * countFridge) + (priceWasher * countWasher);
+
+            Random rnd = new Random();
+            int discountPercent = rnd.Next(1, 15);
+            double discountAmount = totalSum * discountPercent / 100;
+            double finalPrice = totalSum - discountAmount;
+            double roundedPrice = Math.Round(finalPrice, 2);
+
+            Console.WriteLine("\n------------------------------");
+            Console.WriteLine("Ваше замовлення оброблено.");
+            Console.WriteLine("Загальна сума без знижки: " + totalSum + " грн");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Ваша персональна знижка: " + discountPercent + "%");
+            Console.WriteLine("Сума знижки: " + Math.Round(discountAmount, 2) + " грн");
+            Console.WriteLine("ДО СПЛАТИ: " + roundedPrice + " грн");
+            Console.ResetColor();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("Дякуємо за покупку! Натисніть Enter для виходу.");
+            Console.ReadLine();
         }
     }
 }
